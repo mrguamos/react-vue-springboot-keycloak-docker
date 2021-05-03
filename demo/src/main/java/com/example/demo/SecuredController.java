@@ -10,7 +10,7 @@ public class SecuredController {
 
 
     @GetMapping("/secured")
-    private Mono<Response> getEmployeeById() {
+    private Mono<Response> getSecured() {
         return Mono.just(new Response("Secured"));
     }
 
