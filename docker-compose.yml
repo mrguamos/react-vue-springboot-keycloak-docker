@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  keycloak:
+    image: jboss/keycloak:latest
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+      PROXY_ADDRESS_FORWARDING: "true"
+      KEYCLOAK_IMPORT: /tmp/demo.json
+    volumes:
+      - ./demo.json:/tmp/demo.json
+    ports:
+      - "8080:8080"
+  ui-vue:
+    build:
+      context: ui-vue/
+    image: ui-vue
+    profiles: ["docker"]
+  ui-react:
+    build:
+      context: ui-react/
+    image: ui-react
+    profiles: ["docker"]
