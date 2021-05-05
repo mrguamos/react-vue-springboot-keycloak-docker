@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview --port 3001",
-    "lint": "eslint . --ext js,ts,vue --fix --ignore-pattern dist"
+    "lint": "eslint . --ext js,ts,vue --fix --ignore-pattern dist --ignore-pattern oidc-client*"
   },
   "dependencies": {
     "axios": "^0.21.1",
