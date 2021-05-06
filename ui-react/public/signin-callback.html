@@ -1,0 +1,11 @@
+<script src="oidc-client.min.js"></script>
+<script>
+   var mgr = new Oidc.UserManager({
+    response_mode: 'query'
+  });
+  mgr.signinRedirectCallback().then((user) => {
+    window.location = localStorage.getItem('route');
+  }, error => {
+    console.error(error);
+  });
+</script>

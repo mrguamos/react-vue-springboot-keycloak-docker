@@ -22,12 +22,6 @@ export default defineConfig({
   server: {
     //https: true,
     proxy: {
-      '/auth': {
-        target: 'http://localhost:8080',
-        xfwd: true,
-        secure: false,
-        changeOrigin: false,
-      },
       '/api': {
         target: 'http://localhost:8081',
         secure: false,

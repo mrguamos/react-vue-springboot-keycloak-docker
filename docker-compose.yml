@@ -6,7 +6,6 @@ services:
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
-      PROXY_ADDRESS_FORWARDING: "true"
       KEYCLOAK_IMPORT: /tmp/demo.json
     volumes:
       - ./demo.json:/tmp/demo.json
@@ -16,9 +15,15 @@ services:
     build:
       context: ui-vue/
     image: ui-vue
-    profiles: ["docker"]
+    ports:
+      - "3000:80"
   ui-react:
     build:
       context: ui-react/
     image: ui-react
-    profiles: ["docker"]
+    ports:
+      - "3001:80"
+  demo:
+    build:
+      context: demo/
+    image: demo

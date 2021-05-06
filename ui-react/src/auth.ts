@@ -7,7 +7,7 @@ import {
 
 const settings: UserManagerSettings = {
   authority: `http://localhost:8080/auth/realms/demo`,
-  client_id: `demo-vue`,
+  client_id: `demo-react`,
   redirect_uri: `${window.location.origin}/signin-callback.html`,
   silent_redirect_uri: `${window.location.origin}/silent-callback.html`,
   post_logout_redirect_uri: `${window.location.origin}`,
