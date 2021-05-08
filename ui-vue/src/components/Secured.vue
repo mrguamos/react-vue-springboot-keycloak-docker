@@ -11,10 +11,11 @@
 import { defineComponent } from '@vue/runtime-core';
 import router from '@/routes';
 import axios from 'axios';
-import userManager from '@/auth';
+import useAuth from '@/composable/auth';
 
 export default defineComponent({
   setup: async () => {
+    const { userManager } = useAuth();
     const user = await userManager.getUser();
     const { data } = await axios.get('/api/secured', {
       headers: {

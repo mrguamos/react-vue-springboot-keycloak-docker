@@ -1,11 +1,13 @@
 import App from '@/App.vue';
 import router from '@/routes';
 import { createApp } from 'vue';
-import userManager from '@/auth';
+import useAuth from '@/composable/auth';
 
 (async () => {
   try {
+    const { isAuthenticated, userManager } = useAuth();
     await userManager.signinSilent();
+    isAuthenticated.value = true;
   } catch (error) {
     console.log('Not singed in.');
   }

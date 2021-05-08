@@ -1,3 +1,4 @@
+import { reactive, ref } from '@vue/reactivity';
 import {
   InMemoryWebStorage,
   UserManager,
@@ -18,6 +19,11 @@ const settings: UserManagerSettings = {
   userStore: new WebStorageStateStore({ store: new InMemoryWebStorage() }),
 };
 
-const userManager: UserManager = new UserManager(settings);
+const isAuthenticated = ref(false);
+const userManager: UserManager = reactive(new UserManager(settings));
 
-export default userManager;
+const useAuth = () => {
+  return { isAuthenticated, userManager };
+};
+
+export default useAuth;

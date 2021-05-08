@@ -29,7 +29,7 @@
 
   <button @click="count++">count is: {{ count }}</button>
   <button @click="viewSecurePage">Secure Page</button>
-  <button @click="logout" v-if="isLoggedIn">Logout</button>
+  <button @click="logout" v-if="isAuthenticated">Logout</button>
   <p>
     Edit
     <code>components/HelloWorld.vue</code> to test hot module replacement.
@@ -38,8 +38,8 @@
 
 <script lang="ts">
 import router from '@/routes';
-import { ref, defineComponent, onBeforeMount } from 'vue';
-import userManager from '@/auth';
+import { ref, defineComponent } from 'vue';
+import useAuth from '@/composable/auth';
 
 export default defineComponent({
   name: 'HelloWorld',
@@ -50,7 +50,7 @@ export default defineComponent({
     },
   },
   setup: () => {
-    const isLoggedIn = ref(false);
+    const { isAuthenticated, userManager } = useAuth();
     const count = ref(0);
     const viewSecurePage = () => {
       router.push('/secured');
@@ -60,11 +60,7 @@ export default defineComponent({
       await userManager.signoutRedirect();
     };
 
-    onBeforeMount(async () => {
-      isLoggedIn.value = (await userManager.getUser()) != null;
-    });
-
-    return { count, viewSecurePage, logout, isLoggedIn };
+    return { count, viewSecurePage, logout, isAuthenticated };
   },
 });
 </script>
