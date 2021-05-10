@@ -1,4 +1,4 @@
-import { reactive, ref } from '@vue/reactivity';
+import { ref } from '@vue/reactivity';
 import {
   InMemoryWebStorage,
   UserManager,
@@ -20,7 +20,7 @@ const settings: UserManagerSettings = {
 };
 
 const isAuthenticated = ref(false);
-const userManager: UserManager = reactive(new UserManager(settings));
+const userManager: UserManager = new UserManager(settings);
 
 const useAuth = () => {
   return { isAuthenticated, userManager };
