@@ -4,6 +4,7 @@ import {
   UserManagerSettings,
   WebStorageStateStore,
 } from 'oidc-client';
+import { ReactNode } from 'react';
 
 const settings: UserManagerSettings = {
   authority: `http://localhost:8080/auth/realms/demo`,
@@ -20,4 +21,26 @@ const settings: UserManagerSettings = {
 
 const userManager: UserManager = new UserManager(settings);
 
-export default userManager;
+export interface Auth {
+  userManager?: UserManager;
+  isAuthenticated?: boolean;
+  setAuthenticated?: (isAuthenticated: boolean) => void;
+  isLoading?: boolean;
+  setLoading?: (isLoading: boolean) => void;
+}
+
+export interface Props {
+  children: ReactNode;
+}
+
+const defaultAuth: Auth = {
+  userManager: userManager,
+  isAuthenticated: false,
+  isLoading: true,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setAuthenticated: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setLoading: () => {},
+};
+
+export { userManager, defaultAuth };

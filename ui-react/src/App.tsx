@@ -1,44 +1,51 @@
-import React, { useState } from 'react';
-import logo from '@/logo.svg';
+import React from 'react';
 import '@/App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
+import Home from '@/Home';
+import Secured from '@/Secured';
+import AuthContext from '@/AuthContext';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          path="/secured"
+          render={() => (
+            <AuthContext.Consumer>
+              {(context) =>
+                !context?.isAuthenticated ? (
+                  <Redirect to="/auth" />
+                ) : (
+                  <Secured />
+                )
+              }
+            </AuthContext.Consumer>
+          )}
+        />
+
+        <Route
+          path="/auth"
+          render={() => (
+            <AuthContext.Consumer>
+              {(context) => {
+                localStorage.setItem('route', '/secured');
+                context?.userManager?.signinRedirect();
+                return null;
+              }}
+            </AuthContext.Consumer>
+          )}
+        />
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

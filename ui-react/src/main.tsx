@@ -1,19 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '@/index.css';
-import userManager from '@/auth';
 import App from '@/App';
+import AuthProvider from '@/AuthProvider';
 
-(async () => {
-  try {
-    await userManager.signinSilent();
-  } catch (error) {
-    await userManager.signinRedirect();
-  }
-  ReactDOM.render(
-    <React.StrictMode>
+ReactDOM.render(
+  <React.StrictMode>
+    <AuthProvider>
       <App />
-    </React.StrictMode>,
-    document.getElementById('root'),
-  );
-})();
+    </AuthProvider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
