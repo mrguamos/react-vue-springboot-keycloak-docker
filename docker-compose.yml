@@ -27,3 +27,5 @@ services:
     build:
       context: demo/
     image: demo
+    ports:
+      - "8081:8081"
