@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { userManager, defaultAuth, Props } from '@/auth';
+import React, { ReactNode, useEffect, useState } from 'react';
+import { userManager, defaultAuth } from '@/auth';
 import AuthContext from '@/AuthContext';
+
+export interface Props {
+  children: ReactNode;
+}
 
 const AuthProvider = ({ children }: Props) => {
   const [auth, setAuth] = useState(defaultAuth);
