@@ -9,4 +9,5 @@ RUN ./gradlew build
 FROM openjdk:11.0.10-jre-slim-buster
 WORKDIR /
 COPY --from=build build/libs/demo-0.0.1-SNAPSHOT.jar demo.jar
+ENV spring.profiles.active=prod
 ENTRYPOINT ["java","-jar","demo.jar"]
