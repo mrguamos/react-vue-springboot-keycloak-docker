@@ -1,5 +1,6 @@
 FROM openjdk:11.0.10-jdk-slim-buster
 WORKDIR /
+COPY gradlew gradle ./
 COPY . .
 RUN ./gradlew build
 
