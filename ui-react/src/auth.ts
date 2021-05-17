@@ -24,9 +24,7 @@ const userManager: UserManager = new UserManager(settings);
 export interface Auth {
   userManager?: UserManager;
   isAuthenticated?: boolean;
-  setAuthenticated?: (isAuthenticated: boolean) => void;
   isLoading?: boolean;
-  setLoading?: (isLoading: boolean) => void;
 }
 
 export interface Props {
@@ -37,10 +35,6 @@ const defaultAuth: Auth = {
   userManager: userManager,
   isAuthenticated: false,
   isLoading: true,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setAuthenticated: () => {},
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setLoading: () => {},
 };
 
 export { userManager, defaultAuth };

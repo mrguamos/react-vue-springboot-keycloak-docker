@@ -10,8 +10,8 @@ const AuthProvider = ({ children }: Props) => {
       .then(() => {
         setAuth({ ...auth, isAuthenticated: true, isLoading: false });
       })
-      .catch((error) => {
-        setAuth({ ...auth, isAuthenticated: false, isLoading: false });
+      .catch(() => {
+        setAuth({ ...auth, isLoading: false });
       });
   }, []);
   return (
