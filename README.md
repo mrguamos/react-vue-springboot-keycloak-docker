@@ -7,4 +7,4 @@ run docker-compose build then run docker-compose up
 open localhost:3000 / 3001 (vue / react)
 login using user / user
 
-if you want to run the projects in your localhost you just need to run keycloak using docker-compose up keycloak then modify the application.yml in the demo api and point it to localhost.
+if you want to run the projects in your localhost you just need to run keycloak using docker-compose up keycloak
