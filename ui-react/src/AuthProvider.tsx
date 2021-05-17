@@ -2,7 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import { userManager, defaultAuth } from '@/auth';
 import AuthContext from '@/AuthContext';
 
-export interface Props {
+interface Props {
   children: ReactNode;
 }
 
